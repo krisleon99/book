@@ -3,6 +3,7 @@
 Intalling dependences:
 
 Django==1.6
+Python =2.7
 
 
 This API solves the problem that hotels have regularly to reserve a room.
