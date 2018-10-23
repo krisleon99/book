@@ -21,11 +21,13 @@ class Room(models.Model):
     Containing the catalog of Rooms.
     :slug: A unique slug identifier.
     :type: A ForeignKey of TypeRoom.
-    :status: status of the room
+    :spend: spend of the room, if spend is False, the room is avaibleself.
+    :set_aside: the last status of the room,  If the set aside is False it's menas that the room is unavailable.
     """
     price = models.DecimalField(max_digits=36,decimal_places=2,verbose_name = "Price", null=True, blank=True)
     type = models.CharField(verbose_name = "Type", max_length=256, blank=True)
-    status = models.BooleanField(verbose_name = "Activa", blank=True)
+    spend = models.BooleanField(verbose_name = "Spend", blank=True)
+    set_aside = models.BooleanField(verbose_name = "Set aside", blank=True)
 
     def __unicode__(self):
         return self.type
