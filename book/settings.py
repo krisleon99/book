@@ -15,6 +15,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Defines the directory that contains the settings file as the PROJECT_ROOT
+# It is used for relative settings elsewhere.
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'book.booking'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'book.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_ROOT, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,7 +118,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+# Absolute path to the directory that holds static files like app media.
+# Example: "/home/media/media.lawrence.com/apps/"
+STATIC_ROOT = os.getenv('STATIC_ROOT',
+                        os.path.join(PROJECT_ROOT, "static_root")
+                        )
 
-STATIC_URL = '/static/'
+# URL that handles the static files like app media.
+# Example: "http://media.lawrence.com"
+STATIC_URL = os.getenv('STATIC_URL', "/static/")

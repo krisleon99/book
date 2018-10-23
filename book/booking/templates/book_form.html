@@ -1,0 +1,16 @@
+<div class="container_documents">
+  <div id="header">
+	<div class="container">
+	</div>
+  </div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6" id="general">
+			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+				{{ form.media }}
+				<p><input type="submit" class="btn btn-primary" value="Guardar"></p>
+			</form>
+		</div>
+	</div>
+</div>
