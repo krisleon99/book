@@ -4,6 +4,7 @@ Intalling dependences:
 
 Django==1.6
 Python =2.7
+django-bootstrap-tags
 
 
 This API solves the problem that hotels have regularly to reserve a room.
