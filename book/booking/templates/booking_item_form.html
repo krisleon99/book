@@ -16,7 +16,7 @@
 		<div class="titulo-blk-row">
 			<div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""></div>
 			  <div class="titulo-txt blk-cell">
-				  <h2>{{room}}</h2>
+				  <h2>{{book}} Total: ${{total}}</h2>
 			  </div>
 		</div>
 	</div>
@@ -28,33 +28,9 @@
 			<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
 				{{ form.media }}
 				{{form|as_bootstrap}}
-				 <p><input type="submit" class="btn btn-primary" value="Next"></p>
+				 <p><input type="submit" class="btn btn-primary" value="Book"></p>
 			</form>
 		</div>
 	</div>
 </div>
 {% endblock %}
-{% block extra_script %}
-<script src="{{ STATIC_URL }}lib/js/jquery.min.js"></script>
-<script
-  src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
-  integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
-  crossorigin="anonymous"></script>
-<script>
-  $(function() {
-    $( "#id_date_from" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "2018:2020",
-
-    });
-    $( "#id_date_until" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "2018:2020",
-
-    });
-  });
-  </script>
-
-{% endblock extra_script %}

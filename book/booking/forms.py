@@ -1,6 +1,9 @@
+"""Forms for the booking module."""
+# Django
 from django.forms import ModelForm
 from django import forms
-from book.booking.models import BookingStatus, Booking, BookingItem
+# book
+from book.booking.models import Booking, BookingItem
 
 class BookingItemForm(ModelForm):
     class Meta:
@@ -10,9 +13,17 @@ class BookingItemForm(ModelForm):
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
+        widgets = {
+            'date_from': forms.DateInput(attrs={'class':'datepicker'}),
+        }
         fields = "__all__"
 
-class BookingStatusForm(ModelForm):
+class BookingHabForm(ModelForm):
     class Meta:
-        model = BookingStatus
-        fields = "__all__"
+        model = Booking
+        exclude = ['room','time_period','status']
+
+class BookingItemRoomForm(ModelForm):
+    class Meta:
+        model = BookingItem
+        exclude = ['booking','total', 'status']

@@ -1,0 +1,85 @@
+{% extends "base_book.html" %}
+{% load i18n %}
+{% load dialogos_tags %}
+{% load agon_ratings_tags %}
+{% load bootstrap_tags %}
+{% load url from future %}
+{% load base_tags %}
+{% load guardian_tags %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block head %}
+{% include "geonode/ext_header.html" %}
+   {{ block.super }}
+   <link href="{{ STATIC_URL }}bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+   <link href="{{ STATIC_URL }}interactive/css/base_documents.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}ms/css/ms.css" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block body_class %}layers{% endblock %}
+{% block body_outer %}
+<div class="content">
+  <div class="container_n">
+    <div class='loader'>
+      <div class='loader-container'>
+        <div class='progress progress-striped active' style="height:4px;">
+          <div class='progress-bar progress-bar-info' id='bar' role='progressbar' style='width: 0%;'></div>
+        </div>
+      </div>
+    </div>
+    <div class="container_documents">
+      <div id="header">
+        <div class="logo">Categorias</div>
+      </div>
+     </div>
+   </div>
+</div>
+<div class="container" style="min-height: 440px;">
+  <div class="nav nav-pills btn-group" style="width:310px;">
+
+
+    </div>
+
+    <div class="clean_pry">
+    {% for item in items %}
+      <div class="mm-sjcat-T2-categories">
+        {% if item.avaible %}
+      <a href="{% url 'upload_booking' item.id %}">
+        <div class="mm-sjcat-T2-title">{{item.slug|truncatechars:60}}</div>
+        <p class="mm-sjcat-T2-des">{{item.type}}</p>
+         <p class="mm-sjcat-T2-des">{{item.type.price}}</p>
+            <p class="mm-sjcat-T2-des">Disponible</p>
+          </a>
+          <div class="narrEdit">
+            <a href="{% url "upload_booking" item.id %}" data-toggle="tooltip" title="Reservar" class="fa fa-calendar-o fa-1x"></a>
+          </div>
+            {% else %}
+            <a href="#">
+              <div class="mm-sjcat-T2-title">{{item.slug|truncatechars:60}}</div>
+              <p class="mm-sjcat-T2-des">{{item.type}}</p>
+               <p class="mm-sjcat-T2-des">{{item.type.price}}</p>
+                  <p class="mm-sjcat-T2-des">No disponible</p>
+                </a>
+          {% endif %}
+      <div class="mm-sjcat-T2-dot"></div>
+    </div>
+    {% empty %}
+    <li>Aún no hay Categorias para este micro sitio</li>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_script %}
+<script src="{{ STATIC_URL }}interactive/js/jquery.mixitup.js" type="text/javascript"></script>
+<script src='{{ STATIC_URL }}map_interface/js/jquery.quicksearch.js'></script>
+<script src="{{STATIC_URL}}geonode/js/colorbox/jquery.colorbox.js"></script>
+<link rel="stylesheet" href="{{STATIC_URL}}geonode/css/colorbox/colorbox.css" />
+<script type="text/javascript">
+  $(".iframe").colorbox({iframe:true, width:"90%", height:"90%"});
+</script>
+{% include "documents.js" %}
+{% endblock extra_script %}

@@ -1,13 +1,12 @@
 """Book URLs module."""
 
-from django.conf.urls import include, url
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
 from book import views
-urlpatterns = [
+
+urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # Booking views
-    url(r'^home/', include('book.booking.urls', namespace='home')),
-
-
-]
+    (r'^booking/', include('book.booking.urls')),
+)

@@ -1,0 +1,97 @@
+{% extends "base_book.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %} booking {% endblock %}
+
+
+{% block body_class %}booking{% endblock %}
+
+{% block body %}
+<!--HEADER-TITULO-->
+<div id="page-header" class="content">
+	<div class="container">
+		<div class="titulo-blk-row">
+			<div class="titulo-img blk-cell"><img src="{{STATIC_URL}}carousel/images/ico22_lineas-trabajo.png" alt=""></div>
+			  <div class="titulo-txt blk-cell">
+				  <h2>{{ booking.booking.room|safe|escape }}</h2>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="container">
+<div class="row">
+	<div class="col-md-8" id="general">
+        <table class="table table-striped">
+            <caption class=".detail-tbl">Current date: {{ booking.creation_date|date:"M d, Y" }}</caption>
+            <tr class=".detail-tbl">
+                <th class=".detail-tbl">Name</th>
+                <th class=".detail-tbl">Last name</th>
+                <th class=".detail-tbl">Email</th>
+                <th class=".detail-tbl">Phone</th>
+                <th class=".detail-tbl">Days</th>
+                <th class=".detail-tbl">From</th>
+                <th class=".detail-tbl">Until</th>
+                <th class=".detail-tbl">Sub total</th>
+            </tr>
+            <tr class=".detail-tbl">
+                <td class=".detail-tbl">{{ booking.name }}</td>
+                <td class=".detail-tbl">{{ booking.last_name }}</td>
+                <td class=".detail-tbl">{{ booking.email }}</td>
+                <td class=".detail-tbl">{{ booking.phone }}</td>
+                <td class=".detail-tbl">{{ booking.booking.time_period }}</td>
+                <td class=".detail-tbl">{{ booking.booking.date_from }}, 2:00pm</td>
+                <td class=".detail-tbl">{{ booking.booking.date_until }}, 12:00pm </td>
+                <td class=".detail-tbl">{{ booking.total }}</td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    Total
+                </td>
+                <th>
+                    {{ booking.total }}
+                </th>
+            </tr>
+        </table>
+	</div>
+
+	<div class="col-md-4">
+
+	<ul class="list-group">
+	<!-- <li class="list-group-item">
+	<button class="btn btn-primary btn-md btn-block" data-toggle="modal" data-target="#edit-book">Edit</button>
+	</li> -->
+	<li class="list-group-item">
+	<a href="{% url 'list' %}" class="btn btn-primary btn-block" id="btn-list">Make other book</a>
+	</li>
+	<div class="modal fade" id="edit-book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title" id="myModalLabel">Editar bookinguesta</h4>
+	    </div>
+	    <div class="modal-body">
+
+	      <div class="row edit-modal">
+	        <div class="col-sm-3">
+
+	          <a class="btn btn-default btn-block btn-xs" href="{% url "upload_booking" booking.id %}">Editar</a>
+
+			</div>
+	      </div>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+	    </div>
+	  </div>
+	</div>
+	</div>
+
+
+
+	</ul>
+	</div>
+</div>
+</div>
+{% endblock %}
